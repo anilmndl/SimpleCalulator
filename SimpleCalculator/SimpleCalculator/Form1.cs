@@ -13,6 +13,8 @@ namespace SimpleCalculator
     public partial class Form1 : Form
     {
         //int intNum1 = 5;        // class variable
+        double input1;
+        double input2;
 
         public Form1()
         {
@@ -36,8 +38,12 @@ namespace SimpleCalculator
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
-            double input1 = double.Parse(textBox1.Text);
-            double input2 = double.Parse(textBox2.Text);
+            //input1 = double.Parse(textBox1.Text);
+            //input2 = double.Parse(textBox2.Text);
+            double.TryParse(textBox1.Text, out input1);
+            double.TryParse(textBox2.Text, out input2);
+
+
             double answer = input1 * input2;
 
             labelOutput.Text = answer.ToString("n2");
@@ -45,7 +51,21 @@ namespace SimpleCalculator
 
         private void btnDivide_Click(object sender, EventArgs e)
         {
+            double.TryParse(textBox1.Text, out input1);
+            double.TryParse(textBox2.Text, out input2);
 
+            if (input2 == 0)  // no semi-colon here, true condition
+            {
+                MessageBox.Show("Cannot divide by 0");
+                labelOutput.Text = "undefined";
+            }
+            else // false condition
+            {
+                double answer = input1 / input2;
+                labelOutput.Text = answer.ToString("n2");
+            }
+
+            
         }
 
         //MessageBox.Show(intNum1.ToString());
